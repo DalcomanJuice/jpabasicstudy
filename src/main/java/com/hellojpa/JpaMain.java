@@ -17,22 +17,11 @@ public class JpaMain {
         tx.begin();
 
         try{
-            //code
-            //비영속 상태
-            Member member = new Member();
-            member.setId(101L);
-            member.setName("HelloJPA");
+            //영속성 컨테이너에 없기 때문에 DB로 부터 값을 가져온다.
+            Member findMember1 = em.find(Member.class, 101L);
 
-            //영속
-            System.out.println("=====Beafore=====");
-            em.persist(member);
-            System.out.println("=====After=====");
-
-            //조회시 select 쿼리가 나가지 않았다.
-            Member findMamer = em.find(Member.class, 101L);
-
-            System.out.println("findMember.id = " + findMamer .getId());
-            System.out.println("findMember.name = " + findMamer.getName());
+            //영속성 컨테이너에 있기 때문에 1차 캐리로 부터 값을 가져온다.
+            Member findMember2 = em.find(Member.class, 101L);
 
             tx.commit();
         }
