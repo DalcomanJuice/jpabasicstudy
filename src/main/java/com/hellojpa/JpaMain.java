@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.lang.management.MemoryManagerMXBean;
 
 public class JpaMain {
 
@@ -17,46 +18,22 @@ public class JpaMain {
 
         try{
             //code
-            //저장
-//            Member member = new Member();
-//            member.setId(2L);
-//            member.setName("HelloB");
-//            em.persist(member); //JPA가 Maaping 정보를 보고 넣어준다
-//            tx.commit();
-
-            //조회
-//            Member findMember = em.find(Member.class, 1L);
-//            tx.commit();;
-
-            //삭제
-//            Member findMember = em.find(Member.class, 1L);
-//            em.remove(findMember);
-//            tx.commit();
-
-            //수정
-//            Member findMember = em.find(Member.class, 1L);
-//            findMember.setName("HelloJPA"); //수정만 하면 된다
-//            tx.commit();
-
-            /**
-             * 영속성 컨테이너 이점
-             * 1차 캐시
-             * 동일성 보장
-             * 트랜잭션 지원하는 쓰기 지연
-             * 변경 감지
-             * 지연 로딩
-             */
-            //영속 상태
+            //비영속 상태
             Member member = new Member();
-            member.setId(10L);
+            member.setId(101L);
             member.setName("HelloJPA");
-                //여기 위에 까지는 비영속 상태//
 
-                //아래부터 영속 상태
+            //영속
+            System.out.println("=====Beafore=====");
             em.persist(member);
-                //아래부터 비용석 상태
-            em.detach(member);
-                //commit 시점에 쿼리문을 날립니다.
+            System.out.println("=====After=====");
+
+            //조회시 select 쿼리가 나가지 않았다.
+            Member findMamer = em.find(Member.class, 101L);
+
+            System.out.println("findMember.id = " + findMamer .getId());
+            System.out.println("findMember.name = " + findMamer.getName());
+
             tx.commit();
         }
         catch(Exception e){
