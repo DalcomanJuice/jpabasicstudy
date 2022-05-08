@@ -13,10 +13,13 @@
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/> <!-- 이건 하이버네이트 전용 라이브러리 -->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/> < dialect 속성 지정-->
+
             <!-- 옵션 -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
+            <!--하이버 네이트에는 batch 사이즈가 존재 이걸 설정하면, 이 사이즈 만큼 모아서 한방에 db에 쫙 넣고 Commit 친다... wrute 이점 얻음-->
+            <property name="hibernate.jdbc.batch_size" value = "10"/>
             <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
         </properties>
     </persistence-unit>

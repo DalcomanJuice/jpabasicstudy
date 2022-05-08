@@ -9,6 +9,15 @@ import javax.persistence.Table;
 //@Table(name = "USER") //이렇게 하면 table 저장될때.. USER table 에 해당 데이터를 저장합니다
 public class Member {
 
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Member(){
+
+    }
+
     @Id
     private Long id;
 
