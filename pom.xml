@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>jpa-basic</groupId>
-    <artifactId>ex1-hello-jpa</artifactId>
-    <version>1.0.0</version>
+    <artifactId>jpabasicstudy</artifactId>
+    <version>1.0.1</version>
 
     <dependencies>
         <!-- JPA 하이버네이트 -->
@@ -21,4 +21,8 @@
             <version>2.1.212</version>
         </dependency>
     </dependencies>
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
 </project>
