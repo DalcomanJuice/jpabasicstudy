@@ -18,13 +18,13 @@ public class JpaMain {
 
         try{
             //150저장 상태
-            //Member member1 = new Member(150L, "A");
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZ"); //여기서 값만 변경한다. 알아서 commit 시점에 update 쿼리문을 전달한다
-
-            //수정에서는 해당 코드는 필요없다.
+            Member member = new Member(200L, "A");
             em.persist(member);
-            System.out.println("=============선 이후에 쿼리 문이 나간다=============");
+
+            //flush 강제 호출 db에 insertQuery 가 나갑니다
+            em.flush();
+
+            System.out.println("==========================");
             tx.commit();
         }
         catch(Exception e){
