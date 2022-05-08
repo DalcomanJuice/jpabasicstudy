@@ -17,12 +17,19 @@ public class JpaMain {
         tx.begin();
 
         try{
-            //150저장 상태
-            Member member = new Member(200L, "A");
-            em.persist(member);
+            //영속
+            Member member = em.find(Member.class, 200L);
+            member.setName("Z1");
 
-            //flush 강제 호출 db에 insertQuery 가 나갑니다
-            em.flush();
+            //영속성 컨텍스트에서 분리시킴 [member와 관련된 영속성 컨텍스트가 모두 분리된다]
+            em.detach(member);
+
+            //entity매니져 안의 모든 영속석 컨테이너를 초기화 시킨다. 1차 캐시 모두 삭제
+            //먼가 JPA쿼리문을 보고 싶을 경우 clear 를 사용한다
+            em.clear();
+
+            //영속성 컨텍스트를 종료한다. 
+            em.close();
 
             System.out.println("==========================");
             tx.commit();
