@@ -17,21 +17,11 @@ public class JpaMain {
         tx.begin();
 
         try{
-            //영속
-            Member member = em.find(Member.class, 200L);
-            member.setName("Z1");
-
-            //영속성 컨텍스트에서 분리시킴 [member와 관련된 영속성 컨텍스트가 모두 분리된다]
-            em.detach(member);
-
-            //entity매니져 안의 모든 영속석 컨테이너를 초기화 시킨다. 1차 캐시 모두 삭제
-            //먼가 JPA쿼리문을 보고 싶을 경우 clear 를 사용한다
-            em.clear();
-
-            //영속성 컨텍스트를 종료한다. 
-            em.close();
-
-            System.out.println("==========================");
+            Member member = new Member();
+            member.setId(2L);
+            member.setUsername("B");
+            member.setRoleType(RoleType.GUEST);
+            em.persist(member);
             tx.commit();
         }
         catch(Exception e){
